@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react"
 import ReactStars from "react-rating-stars-component"
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react"
 
-// Import Swiper styles
+// Import Swiper components and styles
+import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import "swiper/css/free-mode"
 import "swiper/css/pagination"
 import "../../App.css"
+
 // Icons
 import { FaStar } from "react-icons/fa"
-// Import required modules
+
+// Swiper modules
 import { Autoplay, FreeMode, Pagination } from "swiper/modules"
 
-// Get apiFunction and the endpoint
+// API imports
 import { apiConnector } from "../../services/apiconnector"
 import { ratingsEndpoints } from "../../services/apis"
 
@@ -23,42 +24,44 @@ function ReviewSlider() {
 
   useEffect(() => {
     ;(async () => {
-      const { data } = await apiConnector(
-        "GET",
-        ratingsEndpoints.REVIEWS_DETAILS_API
-      )
-      if (data?.success) {
-        setReviews(data?.data)
+      try {
+        const { data } = await apiConnector(
+          "GET",
+          ratingsEndpoints.REVIEWS_DETAILS_API
+        )
+        if (data?.success) {
+          setReviews(data?.data)
+        }
+      } catch (error) {
+        console.error("Error fetching reviews:", error)
       }
     })()
   }, [])
 
-  // console.log(reviews)
-
   return (
     <div className="text-white">
       <div className="my-[50px] h-[184px] max-w-maxContentTab lg:max-w-maxContent">
-        <Swiper
-          slidesPerView={4}
-          spaceBetween={25}
-          loop={true}
-          freeMode={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          modules={[FreeMode, Pagination, Autoplay]}
-          className="w-full "
-        >
-          {reviews.map((review, i) => {
-            return (
+        {reviews.length > 0 ? (
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={25}
+            loop={reviews.length > 4}
+            freeMode={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            modules={[FreeMode, Pagination, Autoplay]}
+            className="w-full"
+          >
+            {reviews.map((review, i) => (
               <SwiperSlide key={i}>
                 <div className="flex flex-col gap-3 bg-richblack-800 p-3 text-[14px] text-richblack-25">
                   <div className="flex items-center gap-4">
                     <img
                       src={
                         review?.user?.image
-                          ? review?.user?.image
+                          ? review.user.image
                           : `https://api.dicebear.com/5.x/initials/svg?seed=${review?.user?.firstName} ${review?.user?.lastName}`
                       }
                       alt=""
@@ -77,9 +80,9 @@ function ReviewSlider() {
                           .split(" ")
                           .slice(0, truncateWords)
                           .join(" ")} ...`
-                      : `${review?.review}`}
+                      : review?.review}
                   </p>
-                  <div className="flex items-center gap-2 ">
+                  <div className="flex items-center gap-2">
                     <h3 className="font-semibold text-yellow-100">
                       {review.rating.toFixed(1)}
                     </h3>
@@ -95,10 +98,13 @@ function ReviewSlider() {
                   </div>
                 </div>
               </SwiperSlide>
-            )
-          })}
-          {/* <SwiperSlide>Slide 1</SwiperSlide> */}
-        </Swiper>
+            ))}
+          </Swiper>
+        ) : (
+          <p className="text-center text-richblack-300">
+            No reviews available right now.
+          </p>
+        )}
       </div>
     </div>
   )
