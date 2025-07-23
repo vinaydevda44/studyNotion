@@ -32,7 +32,7 @@ app.use(fileUpload({
 }));
 
 
-const allowedOrigins = [
+const allowedOrigins = [ 
   "http://localhost:3000",
   "http://localhost:5173",
   "https://study-notion-lac-five.vercel.app" 
