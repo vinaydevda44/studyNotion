@@ -18,10 +18,6 @@ const { auth } = require("../middlewares/auth")
 
 // Routes for Login, Signup, and Authentication
 
-// ********************************************************************************************************
-//                                      Authentication routes
-// ********************************************************************************************************
-
 // Route for user login
 router.post("/login", login)
 
@@ -34,9 +30,6 @@ router.post("/sendotp", sendOTP)
 // Route for Changing the password
 router.post("/changepassword", auth, changePassword)
 
-// ********************************************************************************************************
-//                                      Reset Password
-// ********************************************************************************************************
 
 // Route for generating a reset password token
 router.post("/resetPasswordToken", resetPasswordToken)

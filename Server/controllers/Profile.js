@@ -124,6 +124,8 @@ exports.updateDisplayPicture = async (req, res) => {
       1000,
       1000
     )
+
+
     console.log(image)
     const updatedProfile = await User.findByIdAndUpdate(
       { _id: userId },
@@ -211,28 +213,43 @@ exports.getEnrolledCourses = async (req, res) => {
 
 exports.instructorDashboard = async (req, res) => {
   try {
-    const courseDetails = await Course.find({ instructor: req.user.id })
+    
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized: No user found in request",
+      });
+    }
+
+    const courseDetails = await Course.find({ instructor: req.user.id });
 
     const courseData = courseDetails.map((course) => {
-      const totalStudentsEnrolled = course.studentsEnroled.length
-      const totalAmountGenerated = totalStudentsEnrolled * course.price
+      const totalStudentsEnrolled = course.studentsEnrolled 
+        ? course.studentsEnrolled.length 
+        : 0;
 
-      // Create a new object with the additional fields
-      const courseDataWithStats = {
+      const totalAmountGenerated =
+        totalStudentsEnrolled * (course.price || 0);
+
+      return {
         _id: course._id,
         courseName: course.courseName,
         courseDescription: course.courseDescription,
-        // Include other course properties as needed
         totalStudentsEnrolled,
         totalAmountGenerated,
-      }
+      };
+    });
 
-      return courseDataWithStats
-    })
-
-    res.status(200).json({ courses: courseData })
+    res.status(200).json({
+      success: true,
+      courses: courseData,
+    });
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Server Error" })
+    console.error("INSTRUCTOR_DASHBOARD_ERROR:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: error.message,
+    });
   }
-}
+};

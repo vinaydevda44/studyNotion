@@ -104,7 +104,7 @@ export default function CourseBuilderForm() {
       <p className="text-2xl font-semibold text-richblack-5">Course Builder</p>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col space-y-2">
-          <label className="text-sm text-richblack-5" htmlFor="sectionName">
+          <label className="text-sm text-yellow-100" htmlFor="sectionName">
             Section Name <sup className="text-pink-200">*</sup>
           </label>
           <input
@@ -112,7 +112,7 @@ export default function CourseBuilderForm() {
             disabled={loading}
             placeholder="Add a section to build your course"
             {...register("sectionName", { required: true })}
-            className="form-style w-full"
+            className="form-style w-full bg-white rounded-md p-1"
           />
           {errors.sectionName && (
             <span className="ml-2 text-xs tracking-wide text-pink-200">

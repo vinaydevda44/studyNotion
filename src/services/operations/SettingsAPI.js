@@ -15,24 +15,25 @@ const {
 export function updateDisplayPicture(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
+    console.log("this is my token ",token);
     try {
       const response = await apiConnector(
         "PUT",
         UPDATE_DISPLAY_PICTURE_API,
         formData,
         {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, 
+          
         }
       )
-      console.log(
-        "UPDATE_DISPLAY_PICTURE_API API RESPONSE............",
-        response
-      )
+      console.log("Final request headers:", response.config.headers)
+
+      console.log("UPDATE_DISPLAY_PICTURE_API API RESPONSE............", response)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
+
       toast.success("Display Picture Updated Successfully")
       dispatch(setUser(response.data.data))
     } catch (error) {
@@ -43,12 +44,15 @@ export function updateDisplayPicture(token, formData) {
   }
 }
 
+
 export function updateProfile(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     try {
+      
       const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
         Authorization: `Bearer ${token}`,
+        
       })
       console.log("UPDATE_PROFILE_API API RESPONSE............", response)
 
@@ -76,6 +80,7 @@ export async function changePassword(token, formData) {
     const response = await apiConnector("POST", CHANGE_PASSWORD_API, formData, {
       Authorization: `Bearer ${token}`,
     })
+    console.log("this is token",token);
     console.log("CHANGE_PASSWORD_API API RESPONSE............", response)
 
     if (!response.data.success) {

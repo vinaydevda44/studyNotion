@@ -149,14 +149,14 @@ export default function CourseInformationForm() {
     >
       {/* Course Title */}
       <div className="flex flex-col space-y-2">
-        <label htmlFor="courseTitle" className="text-sm text-richblack-5">
-          Course Title <sup className="text-pink-200">*</sup>
+        <label htmlFor="courseTitle" className="text-sm text-yellow-100">
+          Course Title <sup className="text-pink-200 ">*</sup>
         </label>
         <input
           id="courseTitle"
           placeholder="Enter Course Title"
           {...register("courseTitle", { required: true })}
-          className="form-style w-full"
+          className="form-style w-full bg-white rounded-md p-1"
         />
         {errors.courseTitle && (
           <span className="text-xs text-pink-200">Course title is required</span>
@@ -165,14 +165,14 @@ export default function CourseInformationForm() {
 
       {/* Course Short Description */}
       <div className="flex flex-col space-y-2">
-        <label htmlFor="courseShortDesc" className="text-sm text-richblack-5">
+        <label htmlFor="courseShortDesc" className="text-sm text-yellow-100">
           Course Short Description <sup className="text-pink-200">*</sup>
         </label>
         <textarea
           id="courseShortDesc"
           placeholder="Enter Description"
           {...register("courseShortDesc", { required: true })}
-          className="form-style min-h-[130px] resize-none"
+          className="form-style min-h-[130px] resize-none  bg-white rounded-md p-1"
         />
         {errors.courseShortDesc && (
           <span className="text-xs text-pink-200">
@@ -183,7 +183,7 @@ export default function CourseInformationForm() {
 
       {/* Course Price */}
       <div className="flex flex-col space-y-2">
-        <label htmlFor="coursePrice" className="text-sm text-richblack-5">
+        <label htmlFor="coursePrice" className="text-sm text-yellow-100">
           Course Price <sup className="text-pink-200">*</sup>
         </label>
         <div className="relative">
@@ -197,7 +197,7 @@ export default function CourseInformationForm() {
                 value: /^(0|[1-9]\d*)(\.\d+)?$/,
               },
             })}
-            className="form-style w-full !pl-12"
+            className="form-style w-full !pl-12  bg-white rounded-md p-1"
           />
           <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 -translate-y-1/2 text-2xl text-richblack-400" />
         </div>
@@ -208,12 +208,12 @@ export default function CourseInformationForm() {
 
       {/* Course Category */}
       <div className="flex flex-col space-y-2">
-        <label htmlFor="courseCategory" className="text-sm text-richblack-5">
+        <label htmlFor="courseCategory" className="text-sm text-yellow-100">
           Course Category <sup className="text-pink-200">*</sup>
         </label>
         <select
           {...register("courseCategory", { required: true })}
-          className="form-style w-full"
+          className="form-style w-full  bg-white rounded-md p-1"
           defaultValue=""
         >
           <option value="" disabled>
@@ -235,7 +235,7 @@ export default function CourseInformationForm() {
       <ChipInput
         label="Tags"
         name="courseTags"
-        placeholder="Enter Tags and press Enter"
+        placeholder="Enter Tags and press"
         register={register}
         errors={errors}
         setValue={setValue}
@@ -254,14 +254,14 @@ export default function CourseInformationForm() {
 
       {/* Benefits */}
       <div className="flex flex-col space-y-2">
-        <label htmlFor="courseBenefits" className="text-sm text-richblack-5">
+        <label htmlFor="courseBenefits" className="text-sm text-yellow-100">
           Benefits of the course <sup className="text-pink-200">*</sup>
         </label>
         <textarea
           id="courseBenefits"
           placeholder="Enter benefits"
           {...register("courseBenefits", { required: true })}
-          className="form-style min-h-[130px] resize-none"
+          className="form-style min-h-[130px] resize-none bg-white rounded-md p-1"
         />
         {errors.courseBenefits && (
           <span className="text-xs text-pink-200">Benefits are required</span>

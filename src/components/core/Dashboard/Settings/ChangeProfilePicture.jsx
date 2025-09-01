@@ -6,6 +6,7 @@ import { updateDisplayPicture } from "../../../../services/operations/SettingsAP
 import IconBtn from "../../../common/IconBtn"
 
 export default function ChangeProfilePicture() {
+
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
   const dispatch = useDispatch()
@@ -73,7 +74,7 @@ export default function ChangeProfilePicture() {
                 type="file"
                 ref={fileInputRef}
                 onChange={handleFileChange}
-                className="hidden"
+                className="hidden "
                 accept="image/png, image/gif, image/jpeg"
               />
               <button
