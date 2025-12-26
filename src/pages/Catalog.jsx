@@ -104,7 +104,7 @@ const Catalog = () => {
             </div>
             <div>
               <CourseSlider
-                Courses={catalogPageData?.data?.selectedCategory?.courses}
+                Courses={catalogPageData?.mostSellingCourses}
               />
             </div>
           </div>
