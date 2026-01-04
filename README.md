@@ -56,7 +56,7 @@ https://study-notion-lac-five.vercel.app/
 ## Installation & Setup
 
 ```bash
-git clone https://github.com/vinaydevda44/studynotion.git
+git clone https://github.com/vinaydevda44/studyNotion
 cd studynotion
 
 npm install
