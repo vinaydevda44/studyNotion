@@ -1,12 +1,63 @@
-# React + Vite
+# StudyNotion
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+StudyNotion is a full-stack web application where students can explore courses,
+purchase and enroll in them, and track their learning progress.
+Instructors can create and manage courses, while admins handle platform management.
 
-Currently, two official plugins are available:
+## Live Demo
+https://study-notion-lac-five.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Student
+- Browse available courses
+- Purchase and enroll in courses
+- Track learning progress
+
+### Instructor
+- Create and publish courses
+- Manage course content
+- View course progress and dashboard
+
+### Admin
+- Manage course categories
+- Maintain and monitor platform activities
+
+### General
+- Secure authentication and authorization
+- Payment gateway integration
+- Cloud-based media storage using Cloudinary
+
+---
+
+## Tech Stack
+
+**Frontend**
+- React
+- Tailwind CSS
+
+**Backend**
+- Node.js
+- Express.js
+
+**Database**
+- MongoDB
+
+**Other Tools & Services**
+- JWT Authentication
+- Payment Gateway
+- Cloudinary (media storage)
+- Postman (API testing)
+
+---
+
+## Installation & Setup
+
+```bash
+git clone https://github.com/vinaydevda44/studynotion.git
+cd studynotion
+
+npm install
+npm run dev
